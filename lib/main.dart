@@ -1,5 +1,7 @@
-import 'package:expenses_app/widgets/user_transactions.dart';
+import 'package:expenses_app/widgets/transaction_list.dart';
+import './widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
+import 'models/transaction.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,9 +21,40 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  // late String titleInput;
-  // late String amountInput;
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> _userTransactions = [
+    Transaction(id: '1', title: 'Food', amount: 12.99, date: DateTime.now()),
+    Transaction(id: '2', title: 'Games', amount: 200, date: DateTime.now()),
+    Transaction(id: '3', title: 'Clothes', amount: 69.99, date: DateTime.now()),
+  ];
+
+  _addNewTransaction(String txTitle, double amount) {
+    final Transaction newTx = Transaction(
+        id: DateTime.now().toString(),
+        title: txTitle,
+        amount: amount,
+        date: DateTime.now());
+    setState(() {
+      _userTransactions.add(newTx);
+    });
+  }
+
+  void _startAddNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return GestureDetector(
+          child: NewTransaction(_addNewTransaction),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +62,7 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter App'),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () => _startAddNewTransaction(context),
             icon: Icon(Icons.add),
           ),
         ],
@@ -55,12 +88,12 @@ class MyHomePage extends StatelessWidget {
                 )),
               ),
             ),
-            UserTransactions()
+            TransactionList(_userTransactions),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => _startAddNewTransaction(context),
         child: Icon(Icons.add),
         shape: CircleBorder(),
         backgroundColor: Colors.lightBlue,
