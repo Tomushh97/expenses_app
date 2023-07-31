@@ -30,26 +30,28 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Colors.blueAccent,
         foregroundColor: Colors.white,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          const SizedBox(
-            width: double.infinity,
-            height: 100,
-            child: Card(
-              margin: EdgeInsets.all(10),
-              elevation: 2,
-              color: Colors.blue,
-              child: Center(
-                  child: Text(
-                'Chart!',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              )),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            const SizedBox(
+              width: double.infinity,
+              height: 100,
+              child: Card(
+                margin: EdgeInsets.all(10),
+                elevation: 2,
+                color: Colors.blue,
+                child: Center(
+                    child: Text(
+                  'Chart!',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                )),
+              ),
             ),
-          ),
-          UserTransactions()
-        ],
+            UserTransactions()
+          ],
+        ),
       ),
     );
   }
