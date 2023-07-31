@@ -27,6 +27,12 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter App'),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.add),
+          ),
+        ],
         backgroundColor: Colors.blueAccent,
         foregroundColor: Colors.white,
       ),
@@ -52,6 +58,13 @@ class MyHomePage extends StatelessWidget {
             UserTransactions()
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+        shape: CircleBorder(),
+        backgroundColor: Colors.lightBlue,
+        foregroundColor: Colors.white,
       ),
     );
   }

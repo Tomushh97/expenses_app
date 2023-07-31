@@ -25,7 +25,7 @@ class TransactionList extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(10),
                 child: Text(
-                  '${_userTransactions[index].amount} PLN',
+                  '${_userTransactions[index].amount.toStringAsFixed(2)} PLN',
                   style: const TextStyle(
                       color: Colors.green, fontWeight: FontWeight.bold),
                 ),
