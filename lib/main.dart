@@ -15,6 +15,30 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         useMaterial3: true,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.indigo),
+        primaryColor: Colors.lightBlue[800],
+        appBarTheme: const AppBarTheme(
+            titleTextStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'OpenSans')),
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(
+              fontSize: 48,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Quicksand'),
+          titleLarge: TextStyle(
+              fontSize: 28,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'Quicksand'),
+          bodyMedium: TextStyle(
+            fontSize: 14,
+            fontFamily: 'Quicksand',
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       home: MyHomePage(),
     );
@@ -59,32 +83,33 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter App'),
+        title: Text(
+          'Personal Expenses',
+          style: Theme.of(context).appBarTheme.titleTextStyle,
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
             onPressed: () => _startAddNewTransaction(context),
             icon: Icon(Icons.add),
           ),
         ],
-        backgroundColor: Colors.blueAccent,
-        foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const SizedBox(
+            SizedBox(
               width: double.infinity,
               height: 100,
               child: Card(
                 margin: EdgeInsets.all(10),
                 elevation: 2,
-                color: Colors.blue,
                 child: Center(
                     child: Text(
                   'Chart!',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.titleLarge,
                 )),
               ),
             ),
@@ -96,8 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () => _startAddNewTransaction(context),
         child: Icon(Icons.add),
         shape: CircleBorder(),
-        backgroundColor: Colors.lightBlue,
-        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
     );
   }
