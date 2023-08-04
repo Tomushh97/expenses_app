@@ -1,16 +1,50 @@
 # expenses_app
+This mobile application was being made along with Flutter and Dart tutorial. There are a few things implemented on my own, some are different and finally, some are going to be extended in the future. 
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [License](#license)
+- [Contact](#contact)
 
-A new Flutter project.
+## Introduction
+
+To be added.
+
+## Features
+
+To be added.
+
+## Screenshots
+
+To be added.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To be added.
 
-A few resources to get you started if this is your first Flutter project:
+### Prerequisites
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter SDK version 3.10.5 or higher
+- Dart SDK version 3.0.5 or higher
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Installation
+
+To be added.
+
+## Usage
+
+To be added.
+
+## Dependencies
+
+To be added.
+
+## License
+
+This is an Open Source project. Feel free to use.
