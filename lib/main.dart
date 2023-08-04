@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.indigo),
-        primaryColor: Colors.lightBlue[800],
         appBarTheme: const AppBarTheme(
             titleTextStyle: TextStyle(
                 color: Colors.white,
@@ -52,11 +51,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransactions = [
-    Transaction(id: '1', title: 'Food', amount: 12.99, date: DateTime.now()),
-    Transaction(id: '2', title: 'Games', amount: 200, date: DateTime.now()),
-    Transaction(id: '3', title: 'Clothes', amount: 69.99, date: DateTime.now()),
-  ];
+  final List<Transaction> _userTransactions = [];
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
