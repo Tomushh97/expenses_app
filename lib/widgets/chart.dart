@@ -25,7 +25,7 @@ class Chart extends StatelessWidget {
         'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalSum
       };
-    });
+    }).reversed.toList();
   }
 
   double get totalSpending {
@@ -38,7 +38,7 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         elevation: 5,
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(6),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

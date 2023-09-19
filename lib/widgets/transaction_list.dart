@@ -4,57 +4,75 @@ import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> _userTransactions;
+  final Function deleteTransaction;
 
-  TransactionList(List<Transaction> this._userTransactions);
+  TransactionList(
+    List<Transaction> this._userTransactions,
+    this.deleteTransaction,
+  );
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      child: _userTransactions.isEmpty
-          ? Column(
+    return _userTransactions.isEmpty
+        ? LayoutBuilder(builder: (context, constraints) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('No transactions added yet',
-                    style: Theme.of(context).textTheme.bodyMedium),
-                Image.asset('assets/images/waiting.png'),
+                Text(
+                  'No transactions added yet',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Image.asset(
+                  'assets/images/waiting.png',
+                  height: constraints.maxHeight * 0.3,
+                ),
+                const Padding(
+                  padding: EdgeInsetsDirectional.only(
+                    bottom: 50,
+                  ),
+                ),
               ],
-            )
-          : ListView.builder(
-              itemBuilder: (ctx, index) {
-                return Card(
-                  child: Row(children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        border: null,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                          '${_userTransactions[index].amount.toStringAsFixed(2)} PLN',
-                          style: Theme.of(context).textTheme.bodyMedium),
+            );
+          })
+        : ListView.builder(
+            itemBuilder: (ctx, index) {
+              return Card(
+                elevation: 5,
+                margin: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 5,
+                ),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30,
+                    child: Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: FittedBox(
+                          child:
+                              Text('${_userTransactions[index].amount} PLN')),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          _userTransactions[index].title,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                        Text(
-                            DateFormat.MMMMEEEEd()
-                                .format(_userTransactions[index].date),
-                            style: Theme.of(context).textTheme.bodySmall),
-                      ],
-                    )
-                  ]),
-                );
-              },
-              itemCount: _userTransactions.length,
-            ),
-    );
+                  ),
+                  title: Text(
+                    _userTransactions[index].title,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  subtitle: Text(
+                    DateFormat.yMMMMd().format(_userTransactions[index].date),
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    color: Theme.of(context).colorScheme.error,
+                    onPressed: () =>
+                        deleteTransaction(_userTransactions[index].id),
+                  ),
+                ),
+              );
+            },
+            itemCount: _userTransactions.length,
+          );
   }
 }
